@@ -1,9 +1,8 @@
-import sha1 from 'sha1'
+import sha1 from "sha1";
 
-export function ocultarSenha(senha){
+export default function ocultarSenha(senha) {
   console.log(senha);
   var hash = sha1(senha);
-  console.log(hash)
-  return hash
+  console.log(hash);
+  return hash;
 }
-

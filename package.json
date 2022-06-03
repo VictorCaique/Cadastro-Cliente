@@ -5,7 +5,7 @@
   "description": "Projeto acadêmico desenvolvido nas aulas de Técnicas Avançadas de Programação Web ministrada pelo professor Ícaro",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
