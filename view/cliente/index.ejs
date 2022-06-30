@@ -24,8 +24,8 @@
             <% docs.forEach(usuario => { %>
             <li>
                 <%= usuario.nome %>
-                <input type="button" onclick="location.href='client/delete/<%= usuario.id %>'" value="delete" />
-                <input type="button" onclick="location.href='client/edit/<%= usuario.id %>'" value="editar" />
+                <input type="button" onclick="location.href='../client/delete/<%= usuario.id %>'" value="delete" />
+                <input type="button" onclick="location.href='../client/edit/<%= usuario.id %>'" value="editar" />
             </li>
             <% }) %>
         </ul>

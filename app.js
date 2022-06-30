@@ -21,6 +21,9 @@ app.set("views", PATH.join("view/"));
 //consign.apply('controller/routes', app);
 // consign().include('controller/routes').into(app);
 
+app.get('/', (req, res)=> {
+  res.render("index")
+})
 app.use("/user", userRoutes);
 app.use('/client', clientRoutes);
 

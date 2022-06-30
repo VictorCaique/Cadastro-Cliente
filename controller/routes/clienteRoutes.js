@@ -36,6 +36,7 @@ Router.get('/delete/:id', async (req, res, next)=> {
     var id = req.params.id;
     await usuarioBD.deleteCliente(id);
     const docs = await usuarioBD.selectCliente()
+    res.redirect('/client');
     res.render("cliente/index", {
       mensagem: "Cliente excluido",
       docs
@@ -62,6 +63,30 @@ Router.get('/edit/:id', async (req, res)=> {
   }
 })
 
+Router.post('/edit/save', async (req, res)=> {
+
+  try {
+    usuarioBD.updateCliente({
+      nome: req.body.nome,
+      idade: req.body.idade,
+      cpf: req.body.cpf,
+      endereco: req.body.endereco,
+      id: req.body.id,
+    });
+    const docs = await usuarioBD.selectCliente();
+    res.redirect('/client');
+    res.render("cliente/index", {
+      mensagem: "Lista de Clientes",
+      docs
+    });
+  } catch (error) {
+    res.render("cliente/EditCliente", {
+      mensagem: "Erro no cadastrado",
+    });
+  }
+
+})
+
 Router.post('/cadastro/save', async (req, res) => {
   try {
     await usuarioBD.insertCliente({
@@ -71,6 +96,7 @@ Router.post('/cadastro/save', async (req, res) => {
       endereco: req.body.endereco,
     });
     const docs = await usuarioBD.selectCliente();
+    res.redirect('/client');
     res.render("cliente/index", {
       mensagem: "Lista de Clientes",
       docs
