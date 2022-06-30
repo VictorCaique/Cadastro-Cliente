@@ -3,7 +3,7 @@ import express from "express";
 var Router = express.Router();
 
 
-import usuarioBD from "../../model/repositories/usuarioBD.js";
+import usuarioBD from "../../model/repositories/UsuarioRepository.js";
 import {ocultarSenha} from "../../model/components/segurança.js";
 
 Router.get("/login", (req, res) => {
@@ -37,8 +37,8 @@ Router.get("/delete/usuario/:id", async (req, res, next) => {
   try {
     var id = req.params.id;
     await usuarioBD.deleteUsuario(id);
-    const docs = await usuarioBD.selectUsuario();
-    res.render("usuario/Lista", { mensagem: "", usuario });
+    const docs = await usuarioBD.selectUsuario()
+    res.render("usuario/Lista", { mensagem: "", docs });
     //JMeter
   } catch (err) {
     next(err);
@@ -75,13 +75,10 @@ Router.post("/cadastro/usuario/edit/salvar", (req, res) => {
 
 Router.post("/cadastro/usuario/salvar", async (req, res) => {
   try {
-    var usuario = {
-      nome: req.body.nome,
-      senha: ocultarSenha(req.body.senha),
-    };
     await usuarioBD.insertUsuario({
-      nome: req.body.nome,
-      senha: ocultarSenha(req.body.senha),
+      login: req.body.nome,
+      senha: req.body.senha,
+      hash: ocultarSenha(req.body.senha),
     });
     res.render("usuario/Sucesso", { mensagem: "cadastrado" });
   } catch (error) {

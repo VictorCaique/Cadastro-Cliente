@@ -9,7 +9,9 @@ import userRoutes from "./controller/routes/usuario.js";
 var app = express();
 
 //npm install body-parser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 //nom install ejs
 app.set("view engine", "ejs");
