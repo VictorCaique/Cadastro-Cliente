@@ -11,15 +11,27 @@
             border-radius: 15px;
             background-color: aqua;
         }
+
+        .scroll {
+                margin:4px, 4px;
+                padding:4px;
+                background-color: green;
+                width: 500px;
+                height: 110px;
+                overflow-x: hidden;
+                overflow-y: scroll;
+                text-align:justify;
+            }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container scroll">
         <h1>Clientes</h1>
         <h2><%= mensagem %></h2>
+<<<<<<< HEAD
         <ul>
             <% docs.forEach(usuario => { %>
             <li>
@@ -29,6 +41,20 @@
             </li>
             <% }) %>
         </ul>
+=======
+        <div class="scroll">
+            <ul>
+                <% docs.forEach(usuario => { %>
+                <li>
+                    <%= usuario.nome %>
+                    <input type="button" onclick="location.href='client/delete/<%= usuario.id %>'" value="delete" />
+                    <input type="button" onclick="location.href='client/edit/<%= usuario.id %>'" value="editar" />
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+        </div>
+>>>>>>> b31428fee7e98b62f752902415b9f7639b21de63
         <br>
         <br>
         <input type="button" onclick="location.href='/client/cadastro'" value="Novo usuário" />
