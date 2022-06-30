@@ -6,58 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <style>
         .container {
-            width: 60vh;
-            height: 60vh;
+            width: 75vw;
+            height: 100vh;
+            border: 60%, 40%, 60%, 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 15px;
             background-color: rgb(77, 82, 82);
         }
+        .main{
+        width: 30vw;
+        height: 60vh;
+        padding: 40px;
+        background-color: rgb(197, 197, 197);
+        border-radius: 15px;
+        border: 2px solid black;
+      }
 
         .scroll {
-                margin:4px, 4px;
-                padding:4px;
-                background-color: green;
-                width: 500px;
-                height: 110px;
-                overflow-x: hidden;
-                overflow-y: scroll;
-                text-align:justify;
-            }
+            margin: 4px, 4px;
+            padding: 4px;
+            width: 300px;
+            height: 65%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            text-align: justify;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
 </head>
 
 <body>
-    <div class="container scroll">
-        <h1>Clientes</h1>
+    <div class="container">
+        <div class="main">
+            <h1>Clientes</h1>
         <h2><%= mensagem %></h2>
-<<<<<<< HEAD
-        <ul>
-            <% docs.forEach(usuario => { %>
-            <li>
-                <%= usuario.nome %>
-                <input type="button" onclick="location.href='../client/delete/<%= usuario.id %>'" value="delete" />
-                <input type="button" onclick="location.href='../client/edit/<%= usuario.id %>'" value="editar" />
-            </li>
-            <% }) %>
-        </ul>
-=======
         <div class="scroll">
             <ul>
                 <% docs.forEach(usuario => { %>
                 <li>
                     <%= usuario.nome %>
-                    <input type="button" onclick="location.href='client/delete/<%= usuario.id %>'" value="delete" />
-                    <input type="button" onclick="location.href='client/edit/<%= usuario.id %>'" value="editar" />
+                    <input type="button" onclick="location.href='../client/delete/<%= usuario.id %>'" value="delete" />
+                    <input type="button" onclick="location.href='../client/edit/<%= usuario.id %>'" value="editar" />
                 </li>
                 <% }) %>
             </ul>
         </div>
-        </div>
->>>>>>> b31428fee7e98b62f752902415b9f7639b21de63
         <br>
         <br>
         <input type="button" onclick="location.href='/client/cadastro'" value="Novo usuário" />
+    
+        </div>
     </div>
 
 </body>
