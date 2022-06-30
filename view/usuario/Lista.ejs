@@ -3,24 +3,63 @@
   <head>
     <title>Lista de Usuário</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    
+    <style>
+      body{
+        display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .container {
+          width: 75vw;
+          height: 100vh;
+          border: 60%, 40%, 60%, 40%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 15px;
+          background-color: rgb(77, 82, 82);
+      }
+      .main{
+        width: 30vw;
+        height: 60vh;
+        padding: 40px;
+        background-color: rgb(197, 197, 197);
+        border-radius: 15px;
+        border: 2px solid black;
+      }
+      .scroll {
+                
+                
+                height: 50%;
+                overflow-x: hidden;
+                overflow-y: scroll;
+                text-align:justify;
+            }
+  </style>
   </head>
   <body>
-    <h1><%= mensagem %></h1>
-    <ul>
-      <% docs.forEach(usuario => { %>
-        <li>
-            <%= usuario.login %>
-            <input type="button" onclick="location.href='../delete/usuario/<%= usuario.id %>'" 
-             value="delete" />
-            <input type="button" onclick="location.href='../edit/usuario/<%= usuario.id %>'" 
-             value="editar" />
-        </li>
-      <% }) %>
-    </ul>
-    <br>
-    <br>
-    <input type="button" onclick="location.href='../cadastro'"  value="Novo usuário" />
+    <div class="container">
+      <div class="main">
+        <h1><%= mensagem %></h1>
+        <div class="scroll">
+        <ul>
+          <% docs.forEach(usuario => { %>
+            <li>
+                <%= usuario.login %>
+                <input type="button" onclick="location.href='../delete/usuario/<%= usuario.id %>'" 
+                 value="delete" />
+                <input type="button" onclick="location.href='../edit/usuario/<%= usuario.id %>'" 
+                 value="editar" />
+            </li>
 
+          <% }) %>
+        </ul>
+      </div>
+        <br>
+        <br>
+        <input type="button" onclick="location.href='../cadastro'"  value="Novo usuário" />
+      </div>
+    </div>
+    
   </body>
 </html>
