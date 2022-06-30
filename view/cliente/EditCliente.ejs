@@ -5,8 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Usuario</title>
+    <style>
+      body{
+        display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .container {
+          width: 75vw;
+          height: 100vh;
+          border: 60%, 40%, 60%, 40%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 15px;
+          background-color: rgb(77, 82, 82);
+      }
+      .main{
+        width: 30vw;
+        height: 60vh;
+        padding: 40px;
+        background-color: rgb(197, 197, 197);
+        border-radius: 15px;
+        border: 2px solid black;
+      }
+      </style>
 </head>
 <body>
+  <div class="container">
+    <div class="main">
     <h1>Edição de Usuário</h1>
     <form action="/client/edit/save" method="POST">
         <label>Id:</label>
@@ -26,5 +53,7 @@
         <label style="color: red"><%= mensagem %></label>
       </p>
     <% } %>
+    </div>
+    </div>
 </body>
 </html>
