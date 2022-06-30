@@ -101,7 +101,8 @@ Router.post("/cadastro/usuario/salvar", async (req, res) => {
       senha: req.body.senha,
       hash: ocultarSenha(req.body.senha),
     });
-    res.render("usuario/Sucesso", {
+    res.redirect("../../../user/login")
+    res.render("usuario/Lista", {
       mensagem: "cadastrado"
     });
   } catch (error) {
