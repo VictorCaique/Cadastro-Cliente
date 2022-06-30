@@ -31,7 +31,36 @@ Router.get('/cadastro', async (req, res) => {
   }
 })
 
+Router.get('/delete/:id', async (req, res, next)=> {
+  try {
+    var id = req.params.id;
+    await usuarioBD.deleteCliente(id);
+    const docs = await usuarioBD.selectCliente()
+    res.render("cliente/index", {
+      mensagem: "Cliente excluido",
+      docs
+    });
+    //JMeter
+  } catch (err) {
+    next(err);
+  }
+})
 
+Router.get('/edit/:id', async (req, res)=> {
+  try {
+    var id = req.params.id;
+    const response = await usuarioBD.getClienteId(id);
+    const usuario = response.dataValues;
+    console.log(response);
+    console.log(usuario);
+    res.render("cliente/EditCliente", {
+      mensagem: "",
+      usuario
+    });
+  } catch (err) {
+    next(err);
+  }
+})
 
 Router.post('/cadastro/save', async (req, res) => {
   try {
