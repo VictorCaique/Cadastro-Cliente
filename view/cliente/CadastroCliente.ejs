@@ -1,11 +1,15 @@
 <html>
   <body>
     <h1>Cadastro de Cliente</h1>
-    <form action="/controller/cadastro/usuario/salvar" method="POST">
+    <form action="/client/cadastro/save" method="POST">
       <label>Nome:</label>
       <input type="text" name="nome"><br>
-      <label>Senha:</label>
-      <input type="password" name="senha"><br>
+      <label>Idade:</label>
+      <input type="number" name="idade"><br>
+      <label>CPF:</label>
+      <input type="text" name="cpf"><br>
+      <label>Endereço:</label>
+      <input type="text" name="endereco"><br>
       <input type="submit" value="cadastro">
     </form>
     <% if(mensagem) { %>
