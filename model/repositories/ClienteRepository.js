@@ -4,7 +4,7 @@ import database from '../services/bdorm.js';
 //SETANDO A TABELA
 console.log("CRIANDO TABELA AAAAAAAAAAA")
 const result = await database.sync({
-  force: true
+  force: false
 });
 console.log(result);
 

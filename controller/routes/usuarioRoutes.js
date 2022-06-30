@@ -4,7 +4,9 @@ var Router = express.Router();
 
 
 import usuarioBD from "../../model/repositories/UsuarioRepository.js";
-import {ocultarSenha} from "../../model/components/segurança.js";
+import {
+  ocultarSenha
+} from "../../model/components/segurança.js";
 
 Router.get("/login", (req, res) => {
   if (req.query.fail) {
@@ -12,22 +14,31 @@ Router.get("/login", (req, res) => {
       mensagemLogin: "Usuário e/ou senha incorretos!",
     });
   } else {
-    res.render("usuario/Login", { mensagemLogin: null });
+    res.render("usuario/Login", {
+      mensagemLogin: null
+    });
   }
 });
 
 Router.get("/cadastro", (req, res) => {
   if (req.query.fail) {
-    res.render("usuario/CadastroUsuario", { mensagem: "Cadastro" });
+    res.render("usuario/CadastroUsuario", {
+      mensagem: "Cadastro"
+    });
   } else {
-    res.render("usuario/CadastroUsuario", { mensagem: null });
+    res.render("usuario/CadastroUsuario", {
+      mensagem: null
+    });
   }
 });
 
 Router.get("/lista/usuario", async (req, res, next) => {
   try {
     const docs = await usuarioBD.selectUsuario();
-    res.render("usuario/lista", { mensagem: "lista de Usuários", docs });
+    res.render("usuario/lista", {
+      mensagem: "lista de Usuários",
+      docs
+    });
   } catch (err) {
     next(err);
   }
@@ -38,7 +49,10 @@ Router.get("/delete/usuario/:id", async (req, res, next) => {
     var id = req.params.id;
     await usuarioBD.deleteUsuario(id);
     const docs = await usuarioBD.selectUsuario()
-    res.render("usuario/Lista", { mensagem: "", docs });
+    res.render("usuario/Lista", {
+      mensagem: "",
+      docs
+    });
     //JMeter
   } catch (err) {
     next(err);
@@ -48,23 +62,30 @@ Router.get("/delete/usuario/:id", async (req, res, next) => {
 Router.get("/edit/usuario/:id", async (req, res, next) => {
   try {
     var id = req.params.id;
-    const usuario = await usuarioBD.getUsuarioId(id);
-    res.render("usuario/EditUsuario", { mensagem: "", usuario });
+    const response = await usuarioBD.getUsuarioId(id);
+    const usuario = response.dataValues;
+    console.log(response);
+    console.log(usuario);
+    res.render("usuario/EditUsuario", {
+      mensagem: "",
+      usuario
+    });
   } catch (err) {
     next(err);
   }
 });
 
 Router.post("/cadastro/usuario/edit/salvar", (req, res) => {
-  var usuario = {
-    nome: req.body.nome,
-    senha: req.body.senha,
-    id: req.body.id,
-  };
 
   try {
-    usuarioBD.updateUsuario(usuario);
-    res.render("usuario/Sucesso", { mensagem: "alterado" });
+    usuarioBD.updateUsuario({
+      login: req.body.login,
+      senha: req.body.senha,
+      id: req.body.id,
+    });
+    res.render("usuario/Sucesso", {
+      mensagem: "alterado"
+    });
   } catch (error) {
     res.render("usuario/EditUsuario", {
       title: "Edição Cadastro",
@@ -80,7 +101,9 @@ Router.post("/cadastro/usuario/salvar", async (req, res) => {
       senha: req.body.senha,
       hash: ocultarSenha(req.body.senha),
     });
-    res.render("usuario/Sucesso", { mensagem: "cadastrado" });
+    res.render("usuario/Sucesso", {
+      mensagem: "cadastrado"
+    });
   } catch (error) {
     console.log(error);
     res.render("usuario/CadastroUsuario", {
@@ -92,7 +115,9 @@ Router.post("/cadastro/usuario/salvar", async (req, res) => {
 
 Router.post("/login/executar", (req, res) => {
   if (req.body.nome === "victor" && req.body.senha === "123456") {
-    res.render("/lista/usuario", { mensagem: "cadsatrado" });
+    res.render("/lista/usuario", {
+      mensagem: "cadsatrado"
+    });
   } else {
     res.render("login/?fail=true");
   }

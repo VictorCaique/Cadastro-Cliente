@@ -1,10 +1,10 @@
 import express from "express";
 import PATH from "path";
-import consign from "consign";
 import bodyParser from "body-parser";
 import ejs from "ejs";
 
-import userRoutes from "./controller/routes/usuario.js";
+import userRoutes from "./controller/routes/usuarioRoutes.js";
+import clientRoutes from "./controller/routes/clienteRoutes.js";
 
 var app = express();
 
