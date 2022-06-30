@@ -1,23 +1,24 @@
 import sq from "sequelize";
 import database from "../services/bdorm.js";
 
-const Cliente = database.define("cliente", {
+const Usuario = database.define('usuario', {
   id: {
     type: sq.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  nome: {
+  login: {
     type: sq.STRING,
     allowNull: false,
   },
-  idade: {
-    type: sq.INTEGER,
-  },
-  endereco: {
+  senha: {
     type: sq.STRING,
+    allowNull: false,
   },
+  tipo: sq.STRING,
+
 });
 
-export default Cliente;
+
+export default Usuario;

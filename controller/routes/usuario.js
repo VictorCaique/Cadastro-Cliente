@@ -2,8 +2,9 @@ import express from "express";
 
 var Router = express.Router();
 
+
 import usuarioBD from "../../model/repositories/usuarioBD.js";
-import seguranca from "../../model/components/segurança.js";
+import {ocultarSenha} from "../../model/components/segurança.js";
 
 Router.get("/login", (req, res) => {
   if (req.query.fail) {
@@ -17,9 +18,9 @@ Router.get("/login", (req, res) => {
 
 Router.get("/cadastro", (req, res) => {
   if (req.query.fail) {
-    res.render("usuario/Cadastro", { mensagem: "Cadastro" });
+    res.render("usuario/CadastroUsuario", { mensagem: "Cadastro" });
   } else {
-    res.render("usuario/Cadastro", { mensagem: null });
+    res.render("usuario/CadastroUsuario", { mensagem: null });
   }
 });
 
@@ -72,17 +73,20 @@ Router.post("/cadastro/usuario/edit/salvar", (req, res) => {
   }
 });
 
-Router.post("/cadastro/usuario/salvar", (req, res) => {
+Router.post("/cadastro/usuario/salvar", async (req, res) => {
   try {
     var usuario = {
       nome: req.body.nome,
-      senha: seguranca.ocultarsenha(req.body.senha),
+      senha: ocultarSenha(req.body.senha),
     };
-    usuarioBD.insertUsuario(usuario);
+    await usuarioBD.insertUsuario({
+      nome: req.body.nome,
+      senha: ocultarSenha(req.body.senha),
+    });
     res.render("usuario/Sucesso", { mensagem: "cadastrado" });
   } catch (error) {
     console.log(error);
-    res.render("usuario/Cadastro", {
+    res.render("usuario/CadastroUsuario", {
       title: "Cadastrado",
       mensagem: "Erro no Cadastro",
     });

@@ -1,5 +1,11 @@
 import usuarioBD from "../utils/db.js";
-import seguranca from "../components/segurança.js";
+
+import ClientRepository from '../../model/entities/cliente.js';
+import database from '../services/bdorm.js';
+
+console.log("CRIANDO TABELA AAAAAAAAAAA")
+const result = await database.sync({force: true});
+console.log(result);
 
 export async function selectUsuario() {
   const conn = await usuarioBD.connect();
@@ -24,10 +30,7 @@ export async function login(nome, senha) {
 }
 
 export async function insertUsuario(usuario) {
-  const conn = await usuarioBD.connect();
-  const sql = "INSERT INTO usuario (nome, senha) VALUES (?, ?);";
-  const values = [usuario.nome, seguranca.ocultarsenha(usuario.senha)];
-  return await conn.query(sql, values);
+  return await ClientRepository.create(usuario);
 }
 
 export async function deleteUsuario(id) {
