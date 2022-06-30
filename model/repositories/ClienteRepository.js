@@ -1,4 +1,4 @@
-import ClienteRepository from '../entities/cliente';
+import ClienteRepository from '../entities/cliente.js';
 import database from '../services/bdorm.js';
 
 //SETANDO A TABELA

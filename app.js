@@ -22,6 +22,7 @@ app.set("views", PATH.join("view/"));
 // consign().include('controller/routes').into(app);
 
 app.use("/user", userRoutes);
+app.use('/client', clientRoutes);
 
 app.listen(8081, () => {
   console.log("http://localhost:8081");
